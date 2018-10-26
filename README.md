@@ -64,7 +64,7 @@ Launch your browser and go to the URL given http://localhost:3000/explorer for i
 In order to build the user interfaces for this busness network please clone the repository and follow the instructions
 
 `````
-git clone https://github.com/Blockchain4openscience/B4OS-frontend
+git clone https://github.com/Blockchain4openscience/ro4block
 `````
 Now navigate to the folder. Check that npm is installed by running
 `````

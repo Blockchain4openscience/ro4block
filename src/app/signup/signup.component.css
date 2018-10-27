@@ -1,0 +1,52 @@
+.center {
+	width: 45%;
+	margin: 10px auto;
+}
+
+.title-center {
+	width: 65%;
+	margin: 10px auto;
+	display:flex;
+	justify-content:center;
+	align-items:center; 
+}
+
+.signup-image {
+	min-width: 40%;
+	display:flex;
+	justify-content:center;
+	align-items:center; 
+}
+
+.signup-content {
+	display: flex;
+	margin-top: 25px;
+}
+
+.signup-form {
+	min-width: 60%;
+	font-size: 18px !important;
+}
+  
+.signup-full-width {
+	width: 100%;
+}
+
+.signup-button {
+	display:flex;
+	justify-content:right;
+	align-items:center; 
+	margin: 20px;
+	
+}
+
+.space {
+	flex:1 1 auto;
+}
+.main-div {
+	height: 98vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}

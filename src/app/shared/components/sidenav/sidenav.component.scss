@@ -1,0 +1,31 @@
+.example-sidenav {
+  max-width: 90px;
+  margin-right: 5px;
+}
+
+$icon-large-container-size: 64px;
+$icon-large-size: 48px;
+
+.mat-list-item.large {
+  margin-bottom: 15px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  padding-right: 5px;
+  height: $icon-large-container-size;
+  line-height: $icon-large-container-size;
+
+  .mat-icon, .mat-icon-button i {
+    line-height: $icon-large-size;
+  }
+
+  .mat-icon {
+    width: $icon-large-size;
+    height: $icon-large-size;
+  }
+
+  .material-icons {
+    font-size: $icon-large-size;
+  }
+} 

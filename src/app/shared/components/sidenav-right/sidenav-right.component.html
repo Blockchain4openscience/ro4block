@@ -1,0 +1,60 @@
+<mat-sidenav #sidenav class="sidenav-right-content" position="end" mode="side" opened="true" autosize>
+	<div class="header-title" *ngIf="isExpandedRight">
+		<div><mat-icon svgIcon=wallet></mat-icon></div>
+		<span> Wallet</span>
+		<div class="space"></div>
+		<mat-chip>
+			<mat-icon>monetization_on</mat-icon>
+			<span>{{researcher.wallet}}  </span>
+		</mat-chip>
+		<button mat-icon-button (click)="readHistory()">
+				<mat-icon>autorenew</mat-icon>
+		</button>
+		<button mat-icon-button (click)="setExpandedRight(false)">
+			<mat-icon>clear</mat-icon>
+		</button>
+	</div>	
+	<hr>
+	<div class="wallet-content" *ngIf="isExpandedRight">
+		<mat-accordion>
+			<mat-expansion-panel *ngFor="let history of researcherHistory">
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+							{{history.transactionId}}
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<table>
+						<tr>
+							<th>Operation:</th>
+							<td>{{history.operation}}</td>
+						</tr>
+						<tr>
+							<th>timestamp:</th>
+							<td>{{history.timestamp}}</td>
+						</tr>
+					</table>
+			</mat-expansion-panel>
+		</mat-accordion>	
+		
+		
+		<!--<mat-card *ngFor="let history of researcherHistory" >
+			<mat-card-header class="title-history">
+				<mat-card-title>
+					{{history.transactionId}}
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<table>
+					<tr>
+						<th>Operation:</th>
+						<td>{{history.operation}}</td>
+					</tr>
+					<tr>
+						<th>timestamp:</th>
+						<td>{{history.timestamp}}</td>
+					</tr>
+				</table>
+			</mat-card-content>
+		</mat-card>-->
+	</div>	  
+</mat-sidenav>

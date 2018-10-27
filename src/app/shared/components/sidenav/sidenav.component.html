@@ -1,0 +1,27 @@
+<mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" >
+	<mat-nav-list>
+		<mat-list-item (click)="route('publish');" matTooltip="Publish" [matTooltipShowDelay]="1000" aria-label="Publish" class="large">
+			<mat-icon mat-list-icon>border_color</mat-icon>
+		</mat-list-item>
+		<mat-list-item class="selected-item" (click)="route('dashboard');" matTooltip="Dashboard" [matTooltipShowDelay]="1000" class="large"
+		 aria-label="Dashboard">
+			<mat-icon mat-list-icon>home</mat-icon>
+		</mat-list-item>
+		<mat-list-item (click)="route('ros');" matTooltip="Research Objects" [matTooltipShowDelay]="1000" aria-label="Research Objects" class="large">
+			<mat-icon mat-list-icon>bubble_chart</mat-icon>
+		</mat-list-item>
+		<mat-list-item (click)="route('discos');" matTooltip="Discos" [matTooltipShowDelay]="1000" aria-label="Discos" class="large">
+			<mat-icon mat-list-icon>donut_small</mat-icon>
+		</mat-list-item>
+		<mat-list-item (click)="route('search');" matTooltip="Search" [matTooltipShowDelay]="1000" aria-label="Search" class="large">
+			<mat-icon mat-list-icon>search</mat-icon>
+		</mat-list-item>
+	</mat-nav-list>
+	<mat-divider></mat-divider>
+	<mat-nav-list>
+		<mat-list-item matTooltip="Profile" [matTooltipShowDelay]="1000" aria-label="Profile" class="large">
+			<mat-icon mat-list-icon>supervised_user_circle</mat-icon>
+		</mat-list-item>
+	</mat-nav-list>
+</mat-sidenav>
+

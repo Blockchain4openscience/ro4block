@@ -1,0 +1,41 @@
+.sidenav-right-content {
+	overflow-y:auto;
+}
+
+.header-title {
+	min-height:55px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	text-justify: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 20px; 
+}
+
+.header-title span {
+	margin-left: 25px;
+}
+
+.space {
+	flex: 1 1;
+}
+
+.title-history {
+	display: flex;
+	flex-direction: row;
+	border-bottom: 2px solid;
+	padding-bottom: 15px;
+}
+
+.title-item-content table, th, td {
+	padding: 5px;
+	text-align: left;
+}
+
+.wallet-content {
+  max-height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}

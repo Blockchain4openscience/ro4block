@@ -1,0 +1,40 @@
+.slideshare-main {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+.slideshare-title {
+	padding: 0;
+	margin: 50px;
+	width: 55%;
+}
+
+.slideshare-content {
+	margin-left: 50px;
+	margin-top: 10px;
+	width: 55%;
+	display: flex;
+	flex-direction: column;
+}
+
+.title-repo {
+	display: flex;
+	flex-direction: row;
+	border-bottom: 2px solid;
+	padding-bottom: 15px;
+}
+
+.space {
+	flex: 1 0;
+}
+
+.slideshare-repo {
+	min-width: 60%;
+	margin-top: 25px;
+}
+
+.repo-content table, th, td {
+	padding:15px;
+	text-align: left;
+}

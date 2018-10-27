@@ -1,0 +1,46 @@
+<div class="slideshare-main">
+	<div class="slideshare-title">
+		<h1>Slideshare Repositories</h1>
+    <hr>
+    <div class="slideshare-search">
+      <input type="text" class="form-control" placeholder="Slideshare username">
+      <input type="password" class="form-control" placeholder="Slideshare password">
+      <span class="input-group-btn"></span>
+      <button class="btn btn-primary" type="button" (click)="search(slideshareUsername, slidesharePassword)">Search&nbsp;<i class="fa fa-search"></i></button>
+    </div>
+		<br>
+		<mat-progress-bar mode="query" *ngIf="!slideshareRepos?.length > 0 && searching"></mat-progress-bar>
+	</div>
+	<div class="slideshare-content" *ngIf="slideshareRepos">
+		<mat-card *ngFor="let repo of slideshareRepos" class="slideshare-repo">
+			<mat-card-header class="title-repo">
+				<strong>{{repo.name}}</strong>
+				<div class="space"></div>
+				<button mat-raised-button (click)="claim(repo)" color="{{repo.claimed?'primary':basic}}">
+					<mat-icon *ngIf="repo.claimed">flag</mat-icon>
+					<mat-icon *ngIf="!repo.claimed">add</mat-icon>
+					<span>{{repo.claimed ? "Claimed" : "Claim" }}</span>
+					
+				</button>
+			</mat-card-header>
+			<mat-card-content>
+				<div class="repo-content">
+					<table>
+						<tr>
+							<th>Repo Url:</th>
+							<td>{{repo.uri}}</td>
+						</tr>
+						<tr>
+							<th>Language:</th>
+							<td>{{repo.language}}<td>
+						</tr>
+						<tr>
+							<th>Description:</th>
+							<td>{{repo.description}}</td>
+						</tr>
+					</table>
+				</div>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

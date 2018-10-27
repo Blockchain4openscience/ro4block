@@ -1,0 +1,29 @@
+<mat-sidenav-container class="search-container">
+	<mat-sidenav #sidenav mode="side" opened="true">
+		<mat-nav-list>
+			<mat-list-item class="small" (click)="route('github');">
+				<mat-icon svgIcon="github" ></mat-icon>
+				<span> Github</span>
+			</mat-list-item>
+			<mat-list-item class="small" (click)="route('share');">
+				<mat-icon svgIcon="share_research" ></mat-icon>
+				<span> SHARE</span>
+			</mat-list-item>
+			<mat-list-item class="small" (click)="route('slideshare');">
+				<mat-icon svgIcon="slideshare"></mat-icon>
+				<span> Slideshare</span>
+			</mat-list-item>
+			<mat-list-item class="small" (click)="route('openaire');">
+				<mat-icon svgIcon="openaire" ></mat-icon>
+				<span> Openaire</span>
+			</mat-list-item>
+			<mat-list-item class="small" (click)="route('figshare');">
+				<mat-icon svgIcon="figshare" ></mat-icon>
+				<span> Figshare</span>
+			</mat-list-item>
+		</mat-nav-list>
+	</mat-sidenav>
+	<div class="search-sidenav-content">
+		<router-outlet></router-outlet>
+	</div>
+</mat-sidenav-container>

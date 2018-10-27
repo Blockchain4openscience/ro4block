@@ -1,0 +1,44 @@
+<div class="figshare-main">
+	<div class="figshare-title">
+		<h1>Figshare Repositories</h1>
+		<hr>
+		<a [attr.href]="figshareURL" mat-flat-button *ngIf="!figshareRepos?.length > 0">
+			<mat-icon svgIcon="figshare-bw"></mat-icon>
+			<span> Connect to figshare</span>
+		</a>
+		<br>
+		<mat-progress-bar mode="query" *ngIf="!figshareRepos?.length > 0 && searching"></mat-progress-bar>
+	</div>
+	<div class="figshare-content" *ngIf="figshareRepos">
+		<mat-card *ngFor="let repo of figshareRepos" class="figshare-repo">
+			<mat-card-header class="title-repo">
+				<strong>{{repo.name}}</strong>
+				<div class="space"></div>
+				<button mat-raised-button (click)="claim(repo)" color="{{repo.claimed?'primary':basic}}">
+					<mat-icon *ngIf="repo.claimed">flag</mat-icon>
+					<mat-icon *ngIf="!repo.claimed">add</mat-icon>
+					<span>{{repo.claimed ? "Claimed" : "Claim" }}</span>
+					
+				</button>
+			</mat-card-header>
+			<mat-card-content>
+				<div class="repo-content">
+					<table>
+						<tr>
+							<th>Repo Url:</th>
+							<td>{{repo.uri}}</td>
+						</tr>
+						<tr>
+							<th>Language:</th>
+							<td>{{repo.language}}<td>
+						</tr>
+						<tr>
+							<th>Description:</th>
+							<td>{{repo.description}}</td>
+						</tr>
+					</table>
+				</div>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

@@ -1,0 +1,47 @@
+.ros-main {
+	margin-top: 0px;
+	margin-left: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 99%;
+	-ms-overflow-x: hidden;
+	-ms-overflow-y: scroll;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	overflow: auto;
+}
+
+.ros-title {
+	padding: 0;
+	margin: 50px;
+	width: 60%;
+}
+
+.ros-content {
+	margin-left: 50px;
+	margin-top: 10px;
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+}
+
+.title-ros {
+	display: flex;
+	flex-direction: row;
+	border-bottom: 2px solid;
+	padding-bottom: 15px;
+}
+
+.space {
+	flex: 1 0;
+}
+
+.ros-item {
+	min-width: 60%;
+	margin-top: 25px;
+}
+
+.ros-item-content table, th, td {
+	padding:15px;
+	text-align: left;
+}

@@ -1,0 +1,47 @@
+.search-container {
+	margin-top: 0px;
+	margin-left: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 99%;
+	-ms-overflow-x: hidden;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	overflow: hidden;
+}
+  
+.search-page-container {
+	padding: 0px;
+	margin: 0px;
+	margin-left: 70px;
+	height: 90%;
+}
+  
+.search-sidenav-content {
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	margin-top: 0px;
+}
+  
+$icon-small-container-size: 64px;
+$icon-small-size: 48px;
+
+.mat-list-item.small {
+  padding-right: 10px;
+  height: $icon-small-container-size;
+  line-height: $icon-small-container-size;
+
+  .mat-icon, .mat-icon-button i {
+    line-height: $icon-small-size;
+  }
+
+  .mat-icon {
+    width: $icon-small-size;
+    height: $icon-small-size;
+  }
+
+  .material-icons {
+    font-size: $icon-small-size;
+  }
+}  

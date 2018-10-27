@@ -1,0 +1,31 @@
+.center {
+	width: 45%;
+	margin: 10px auto;
+}
+
+.title-center {
+	width: 65%;
+	margin: 10px auto;
+	display: flex;
+	justify-content:center;
+	align-items:center; 
+	margin-top: 10%;
+}
+
+.title-center span {
+	font-size: 24px;
+	margin-left: 25px;
+}
+
+
+.title {
+	display: block;
+	text-align: center;
+	width: 60%;
+}
+
+.main-div {
+	height: 98vh;
+	display: flex;
+	justify-content: center;
+}

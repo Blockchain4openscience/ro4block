@@ -1,0 +1,14 @@
+<app-header (someEvent)="setExpanded($event)"></app-header>
+<div class="main-container">  
+  <mat-sidenav-container class="example-container" fullscreen>
+    <app-sidenav></app-sidenav>
+  <div class="example-sidenav-content">
+    <div class="page-container">
+      <router-outlet></router-outlet>
+    </div>
+    <app-sidenav-right></app-sidenav-right> 
+  </div>
+  </mat-sidenav-container>
+</div>
+
+

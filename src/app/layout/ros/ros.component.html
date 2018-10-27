@@ -1,0 +1,56 @@
+<div class="ros-main">
+	<div class="ros-title">
+		<h1>Research Objects</h1>
+		<hr>
+	</div>
+	<div class="ros-content">
+		<mat-card *ngFor="let researchOJ of researchObjs" class="ros-item">
+			<mat-card-header class="title-ros">
+				<strong>{{researchOJ.researchObjId}}</strong>
+        <div class="space"></div>
+		<mat-chip-list>
+			<mat-chip color="primary">{{researchOJ.typeRO}}</mat-chip>
+			<mat-chip color="accent">{{researchOJ.operation == 'Contributor' ? 'Contributor' : 'Collect' }}</mat-chip>
+		</mat-chip-list>
+		</mat-card-header>
+			<mat-card-content>
+				<div class="rosos-item-content">
+					<table>
+						<tr>
+                			<th>Title</th>
+                			<td>{{researchOJ.researchObjId}}<td>
+              			</tr>
+              			<tr>
+                			<th>Uri</th>
+                			<td>{{researchOJ.uri}}<td>
+						  </tr>
+						  <tr>
+								<th >Reward</th>
+								<td>{{researchOJ.reward}}<td>
+							  </tr>
+							  <tr>
+								<th>Cost</th>
+								<td>{{researchOJ.cost}}<td>
+							  </tr>
+							  <tr>
+								<th >CountAccess</th>
+								<td>{{researchOJ.countAccess}}<td>
+							  </tr>
+                  		<!--<tr>
+                			<th *ngIf="{{ro.operation == 'Contributor'}}">Reward</th>
+                			<td *ngIf="ro.operation == 'Contributor'">{{ro.cost}}<td>
+                  		</tr>
+                  		<tr>
+                			<th *ngIf="{{ro.operation == 'Contributor'}}">Cost</th>
+                			<td *ngIf="{{ro.operation == 'Contributor'}}">{{}}<td>
+                  		</tr>
+                  		<tr>
+                			<th *ngIf="{{ro.operation == 'Contributor'}}">CountAccess</th>
+                			<td *ngIf="{{ro.operation == 'Contributor'}}">{{ro.countAccess}}<td>
+                  		</tr>-->						
+					</table>
+				</div>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

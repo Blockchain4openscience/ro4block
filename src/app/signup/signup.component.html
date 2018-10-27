@@ -1,0 +1,44 @@
+<div class="main-div">
+	<mat-card class="center" flex="50">
+		<mat-card-title>
+			<div class="title-center">
+				<a><img src="../../../../assets/images/logo.png" width="100" height="100" title="b4os" alt="b4os"></a>
+				<div class="space"></div>
+				<span> Blockchain for Open Science</span>
+			</div>
+		</mat-card-title>
+		<mat-card-content>
+		<hr>	
+		<div class="signup-content">
+			<div class="signup-image">
+				<a><img src="../../assets/images/default-user.png" width="200" height="200" title="user" alt="user"></a>
+			</div>
+			<div class="form-content" >
+				<form class="signup-form" [formGroup]="signupForm" (ngSubmit)="onFormSubmit(signupForm.value)">
+					<mat-form-field class="signup-full-width" >
+						<input matInput placeholder="First Name" formControlName="firstName" required>
+					<mat-error *ngIf="firstName.hasError('required')">
+						First name is required
+					</mat-error>
+					</mat-form-field>
+					<mat-form-field class="signup-full-width" >
+						<input matInput placeholder="Last Name" formControlName="lastName" required>
+						<mat-error *ngIf="lastName.hasError('required')">
+							Last name is required
+						</mat-error>
+					</mat-form-field>
+					<mat-form-field  class="signup-full-width" >
+						<input matInput placeholder="Email" formControlName="email" required>
+						<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+					</mat-form-field>
+				</form>	  
+			</div>
+		</div>
+		</mat-card-content>
+		<mat-card-actions>
+			<div class="signup-button">
+				<button mat-raised-button >Sign Up</button>
+			</div>
+		</mat-card-actions>
+	</mat-card>
+</div>

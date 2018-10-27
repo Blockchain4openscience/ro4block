@@ -1,0 +1,44 @@
+<div class="github-main">
+	<div class="github-title">
+		<h1>Github Repositories</h1>
+		<hr>
+		<a [attr.href]="githubURL" mat-flat-button *ngIf="!githubRepos?.length > 0">
+			<mat-icon svgIcon="github-white"></mat-icon>
+			<span> Connect to github</span>
+		</a>
+		<br>
+		<mat-progress-bar mode="query" *ngIf="!githubRepos?.length > 0 && searching"></mat-progress-bar>
+	</div>
+	<div class="github-content" *ngIf="githubRepos">
+		<mat-card *ngFor="let repo of githubRepos" class="github-repo">
+			<mat-card-header class="title-repo">
+				<strong>{{repo.name}}</strong>
+				<div class="space"></div>
+				<button mat-raised-button (click)="claim(repo)" color="{{repo.claimed?'primary':basic}}">
+					<mat-icon *ngIf="repo.claimed">flag</mat-icon>
+					<mat-icon *ngIf="!repo.claimed">add</mat-icon>
+					<span>{{repo.claimed ? "Claimed" : "Claim" }}</span>
+					
+				</button>
+			</mat-card-header>
+			<mat-card-content>
+				<div class="repo-content">
+					<table>
+						<tr>
+							<th>Repo Url:</th>
+							<td>{{repo.html_url}}</td>
+						</tr>
+						<tr>
+							<th>Language:</th>
+							<td>{{repo.language}}<td>
+						</tr>
+						<tr>
+							<th>Description:</th>
+							<td>{{repo.description}}</td>
+						</tr>
+					</table>
+				</div>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

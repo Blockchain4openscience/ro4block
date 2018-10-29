@@ -25,8 +25,13 @@ export const environment = {
   openaireClientId: 'bec69b2aa0ae870099779e0e41ded2ecb735a4b6',
   openaireClientSecret: 'a68f9e52feac2dccf9604d3837c905f3ca9ebae9df2d2fc64be82a505e3dba64146f6fe2233ae71ca69740ada6355e67bf8c3283b474c3488b423234aaaffa7b',
   openaireApi: "https://api.figshare.com/v2/token",
-  openaireUserApi: "https://api.figshare.com/v2/"
+  openaireUserApi: "https://api.figshare.com/v2/",
+  // Openaire information
+  slideshareApiKey: '3vCVKUss',
+  slideshareSharedSecret: 'mj06UMmH',
+  slideshareApi: "https://www.slideshare.net/api/2/get_slideshows_by_user"
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

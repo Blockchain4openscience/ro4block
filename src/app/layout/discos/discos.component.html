@@ -1,0 +1,40 @@
+<div class="discos-main">
+	<div class="discos-title">
+		<h1>DiScos</h1>
+		<hr>
+		<button mat-flat-button>
+			<mat-icon>add</mat-icon>
+			<span> Create Disco</span>
+		</button>
+	</div>
+	<div class="discos-content" *ngIf="">
+		<mat-card *ngFor="let disco of discos" class="discos-item">
+			<mat-card-header class="title-discos">
+				<strong>{{disco.name}}</strong>
+				<div class="space"></div>
+				<button mat-raised-button (click)="update(repo)" color="repo.claimed?'primary'">
+					<mat-icon>edit</mat-icon>
+					Edit
+				</button>
+			</mat-card-header>
+			<mat-card-content>
+				<div class="discos-item-content">
+					<table>
+						<tr>
+							<th>Repo Url:</th>
+							<td>{{disco.title}}</td>
+						</tr>
+						<tr>
+							<th>Researcher Objects:</th>
+							<td>{{disco.titles}}<td>
+						</tr>
+						<tr>
+							<th>{{disco.operation}}</th>
+							<td><td>
+						</tr>
+					</table>
+				</div>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

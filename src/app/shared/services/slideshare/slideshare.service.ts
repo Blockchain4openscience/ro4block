@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { environment } from '../../../../environments/environment';
+import * as moment from 'moment';
+import * as hash from 'hash.js';
 
 @Injectable()
 export class SlideshareService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private slideshareUrl = `${environment.serviceUrl}/slideshare`;  // URL to web api
+  private slideshareUrl = `${environment.slideshareApi}`;  // URL to web api
 
   constructor(private http: Http) { }
 
   search(username: string, password: string, orcid:string): Promise<Array<any>> {
-    const url = `${this.slideshareUrl}/search?username=${username}&password=${password}&orcid=${orcid}`;
+    let ts = moment().format('LLLL');
+    console.log(ts);
+    hash.sha1().update(`${environment.slideshareSharedSecret}` + ts).digest('hex');
+    const url = `${this.slideshareUrl}?api_key=${environment.slideshareApiKey}&ts=${ts}&hash=${hash}&username=${username}&password=${password}`;    
+
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Array<any>)

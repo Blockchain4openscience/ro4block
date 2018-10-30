@@ -3,8 +3,8 @@
 		<h1>Slideshare Repositories</h1>
     <hr>
     <div class="slideshare-search">
-      <input type="text" class="form-control" placeholder="Slideshare username">
-      <input type="password" class="form-control" placeholder="Slideshare password">
+      <input type="text" class="form-control" placeholder="Slideshare username" [(ngModel)]="slideshareUsername">
+      <input type="password" class="form-control" placeholder="Slideshare password" [(ngModel)]="slidesharePassword">
       <span class="input-group-btn"></span>
       <button class="btn btn-primary" type="button" (click)="search(slideshareUsername, slidesharePassword)">Search&nbsp;<i class="fa fa-search"></i></button>
     </div>

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SlideshareComponent } from './slideshare.component';
 
-describe('GithubComponent', () => {
+describe('SlideshareComponent', () => {
   let component: SlideshareComponent;
   let fixture: ComponentFixture<SlideshareComponent>;
 

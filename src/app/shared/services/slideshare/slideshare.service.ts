@@ -13,11 +13,13 @@ export class SlideshareService {
   constructor(private http: Http) { }
 
   search(username: string, password: string, orcid:string): Promise<Array<any>> {
-    let ts = moment().format('LLLL');
-    console.log(ts);
-    hash.sha1().update(`${environment.slideshareSharedSecret}` + ts).digest('hex');
-    const url = `${this.slideshareUrl}?api_key=${environment.slideshareApiKey}&ts=${ts}&hash=${hash}&username=${username}&password=${password}`;    
-
+    let ts = moment().format('X');
+    console.log(ts.toString());
+    console.log(username);
+    // Revisar las propiedades de hash, ver como sacar el sha1 en forma de string
+    let sha1 = hash.sha1().update(`${environment.slideshareSharedSecret}` + ts.toString()).digest('hex');
+    const url = `${this.slideshareUrl}?api_key=${environment.slideshareApiKey}&ts=${ts}&hash=${sha1}&username=${username}&password=${password}`;    
+    console.log(url);
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Array<any>)

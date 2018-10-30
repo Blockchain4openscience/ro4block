@@ -3,6 +3,7 @@ import { Headers, Http } from '@angular/http';
 import { environment } from '../../../../environments/environment';
 import * as moment from 'moment';
 import * as hash from 'hash.js';
+declare var require: any
 
 @Injectable()
 export class SlideshareService {
@@ -20,6 +21,14 @@ export class SlideshareService {
     let sha1 = hash.sha1().update(`${environment.slideshareSharedSecret}` + ts.toString()).digest('hex');
     const url = `${this.slideshareUrl}?api_key=${environment.slideshareApiKey}&ts=${ts}&hash=${sha1}&username=${username}&password=${password}`;    
     console.log(url);
+    //var JsonResult = {};
+    let xml = this.http.get(url);
+    var parseString = require('xml2js').parseString;
+    parseString(xml, function (err, result) {
+      console.log(JSON.stringify(result));
+      //JsonResult = result;
+    });
+    
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Array<any>)

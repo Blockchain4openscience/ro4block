@@ -13,11 +13,11 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 export class SlideshareComponent implements OnInit {
   public slideshareRepos: Array<any> = [];
-  public slidesharePresentations: Array<any>;
   public user: Object;
   public searching: boolean = true;
   public slideshareUsername: string = '';
   public slidesharePassword: string = '';
+  query = false;
 
   constructor(private roService: ROService,
       private storageService: StorageService,
@@ -27,10 +27,17 @@ export class SlideshareComponent implements OnInit {
 
   ngOnInit() {
       this.user = this.storageService.read<Object>('user');
-      if (this.slideshareUsername !== '' && localStorage.getItem('slidesharePresentations') === null) {
-          this.search(this.slideshareUsername, this.slidesharePassword);
+      if (this.slideshareUsername !== '' && localStorage.getItem('slideshareRepos') === null) {
+          this.slideshareService.search(this.slideshareUsername, this.slidesharePassword, this.user['id']).then(async repos => {
+            console.log(repos);
+					  this.slideshareRepos = repos;
+            this.storageService.write('slideshareRepos', this.slideshareRepos);
+            this.router.navigateByUrl('/home/search/slideshare');
+					  this.searching = false;
+					  this.query = false;
+          });
       } else {
-          this.slidesharePresentations = this.storageService.read<Array<any>>('slidesharePresentations');
+          this.slideshareRepos = this.storageService.read<Array<any>>('slideshareRepos');
           this.searching = false;
       }
   }
@@ -38,8 +45,8 @@ export class SlideshareComponent implements OnInit {
   search(username: string, password: string){
       this.slideshareUsername = username;
       let presentations = this.slideshareService.search(this.slideshareUsername, this.slidesharePassword, this.user['orcid']).then(presentations => {
-          this.slidesharePresentations = presentations;
-          this.storageService.write('slidesharePresentations', this.slidesharePresentations);
+          this.slideshareRepos = presentations;
+          this.storageService.write('slideshareRepos', this.slideshareRepos);
           this.searching = false;
       });
   }

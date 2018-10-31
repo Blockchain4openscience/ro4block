@@ -36,8 +36,8 @@ export class GithubService {
 					.then(gitUser => {
 						return this.http.get<any[]>(gitUser['repos_url']).toPromise()
 							.then(async (repos) => {
-								
 								for (let i = 0; i < repos.length; i++) {
+									console.dir(repos[i]['html_url']);
 									let exist = await this.roService.exists(repos[i]['html_url']);
 									//console.log(exist);
 									if (!exist) {

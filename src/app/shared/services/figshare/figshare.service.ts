@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { ROService } from '../../services/ro/ro.service';
 import { StorageService } from '../../services/storage/storage.service'
+import * as hash from 'hash.js';
 
 @Injectable()
 export class FigshareService {
@@ -39,11 +40,12 @@ export class FigshareService {
                     console.log(repos[i]['url_public_html']);
                     if (!exist) {
                         let repository = repos[i];
-                        repository['$class'] =  "org.bforos.ResearchOJ",
-                        repository['researchObjId'] = repos[i]['url_public_html'],
-                        repository['typero'] = 'CODE',
-                        repository['uri'] = repos[i]['url_public_html'],
-                        repository['owner'] = orcid
+                        repository['$class'] =  "org.bforos.ResearchOJ";
+                        let sha256 = hash.sha256().update(repos[i]['url_public_html']).digest('hex');
+                        repository['researchObjId'] = sha256;
+                        repository['typero'] = 'CODE';
+                        repository['uri'] = repos[i]['url_public_html'];
+                        repository['owner'] = orcid;
                         repository['name'] = repos[i]['title'];
                         repository['claimed'] = false;
                         switch(repos[i]['defined_type'])

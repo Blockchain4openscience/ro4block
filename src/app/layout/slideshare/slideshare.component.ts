@@ -55,8 +55,8 @@ export class SlideshareComponent implements OnInit {
     console.log(researchObject);
     let ro = {
       $class: "org.bforos.CreateResearchOJ",
-      researchObjId: researchObject['uri'],
-      typeRO: "CODE",
+      researchObjId: researchObject['researchObjId'],
+      typeRO: researchObject['typero'],
       uri: researchObject['uri'],
       creator: `resource:org.bforos.Researcher#${this.user['researcherId']}`
         

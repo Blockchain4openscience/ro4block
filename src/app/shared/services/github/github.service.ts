@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { ROService } from '../../services/ro/ro.service';
 import { StorageService } from '../../services/storage/storage.service'
+import * as hash from 'hash.js';
 
 @Injectable()
 export class GithubService {
@@ -42,37 +43,17 @@ export class GithubService {
 									//console.log(exist);
 									if (!exist) {
 										let repository = repos[i];
-										repository['$class'] =  "org.bforos.ResearchOJ",
-										repository['researchObjId'] = repos[i]['html_url'],
-										repository['typero'] = 'CODE',
-										repository['uri'] = repos[i]['html_url'],
-										repository['owner'] = orcid
+										let sha256 = hash.sha256().update(repos[i]['html_url']).digest('hex');
+										repository['$class'] =  "org.bforos.ResearchOJ";
+										repository['researchObjId'] = sha256;
+										repository['typero'] = 'CODE';
+										repository['uri'] = repos[i]['html_url'];
+										repository['owner'] = orcid;
 										repository['name'] = repos[i]['name'];
 										repository['claimed'] = false;
 										repository['language'] = repos[i]['language'];
 										repository['description'] = repos[i]['description'];
 										this.repositories.push(repos[i]);
-										/*
-										let ro = {
-											$class: "org.bforos.ResearchOJ",
-											ROId: repos[i]['html_url'],
-											typero: 'CODE',
-											uri: repos[i]['html_url'],
-											creation: new Date(),
-											owner: orcid
-										}
-										this.roService.add(ro)
-											.then(data => {
-												let repository = data;
-												repository['name'] = repos[i]['name'];
-												repository['claimed'] = false;
-												repository['language'] = repos[i]['language'];
-												repository['description'] = repos[i]['description'];
-												this.repositories.push(repository);
-											})
-											.catch(error => {
-												console.log("Cannot create Research Object ")
-											});*/
 									}
 									else {
 										this.roService.getSingle(repos[i]['html_url'])

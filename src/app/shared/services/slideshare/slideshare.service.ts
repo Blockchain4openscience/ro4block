@@ -35,11 +35,12 @@ export class SlideshareService {
           let exist = await this.roService.exists(Json.User.Slideshow[i]['URL'].toString());
           if (!exist) {
             let repository = Json.User.Slideshow[i];
-            repository['$class'] =  "org.bforos.ResearchOJ",
-            repository['researchObjId'] = Json.User.Slideshow[i]['URL'].toString(),
-            repository['typero'] = 'PRESENTATION',
-            repository['uri'] = Json.User.Slideshow[i]['URL'].toString(),
-            repository['owner'] = orcid
+            repository['$class'] =  "org.bforos.ResearchOJ";
+            let sha256 = hash.sha256().update(Json.User.Slideshow[i]['URL'].toString()).digest('hex');
+            repository['researchObjId'] = sha256;
+            repository['typero'] = 'PRESENTATION';
+            repository['uri'] = Json.User.Slideshow[i]['URL'].toString();
+            repository['owner'] = orcid;
             repository['name'] = Json.User.Slideshow[i]['Title'].toString();
             repository['claimed'] = false;
             repository['language'] = Json.User.Slideshow[i]['Language'].toString();

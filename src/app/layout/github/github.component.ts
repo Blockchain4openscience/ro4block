@@ -60,8 +60,8 @@ export class GithubComponent implements OnInit {
         console.log(researchObject);
 		let ro = {
 			$class: "org.bforos.CreateResearchOJ",
-			researchObjId: researchObject['html_url'],
-  			typeRO: "CODE",
+			researchObjId: researchObject['researchObjId'],
+  			typeRO: researchObject['typero'],
 			uri: researchObject['uri'],
 			creator: `resource:org.bforos.Researcher#${this.user['researcherId']}`
 			  

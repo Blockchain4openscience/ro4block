@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
 	}
 
 	onLoggedout() {
+		localStorage.removeItem('slideshareRepos');
 		localStorage.removeItem('figshareRepos');
         localStorage.removeItem('githubRepos');
         localStorage.removeItem('isLoggedin');

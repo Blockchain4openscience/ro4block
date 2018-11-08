@@ -131,6 +131,3 @@ docker-compose --version
 echo -n 'Python:         '
 python -V
 
-# Print reminder of need to logout in order for these changes to take effect!
-echo ''
-echo "Please logout then login before continuing."

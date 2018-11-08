@@ -1,45 +1,64 @@
 FROM ubuntu:16.04
 MAINTAINER Sergio Cardona Melo  "chechocardona@gmail.com"
 # install prerequisites for Hyperledger-Composer developer environment
-RUN apt-get update
-RUN apt-get install -y curl wget
-RUN apt-get install -y software-properties-common
+RUN apt-get update \
+    && apt-get install -y curl wget \
+    && apt-get install -y software-properties-common \
+    && apt-get -y autoclean \
+    && apt-get -y install build-essential libssl-dev
+# replace shell with bash so we can source files
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# nvm environment variables
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 8.12.0
+
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+
+# install node and npm
+RUN source $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+&& nvm use default
+
+# add node and npm to path so the commands are available
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+RUN apt-add-repository -y ppa:git-core/ppa \
+    && apt-get update \
+    && apt-get install -y git \
+    && apt-get -y install apt-transport-https ca-certificates
+# Add Docker repository key to APT keychain
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg |  apt-key add -
+# Update where APT will search for Docker Packages
+RUN echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" | \
+    tee /etc/apt/sources.list.d/docker.list \
+    && apt-get update \ 
+    && apt-cache policy docker-ce \
+    && apt-get -y install docker-ce \
+    && usermod -aG docker $(whoami) \
+    && curl -L "https://github.com/docker/compose/releases/download/1.13.0/docker-compose-$(uname -s)-$(uname -m)" \
+    -o /usr/local/bin/docker-compose \
+    && chmod +x /usr/local/bin/docker-compose \
+    && apt-get install -y python-minimal \
+    && apt-get -y install unzip
+# add user
+RUN apt-get install -y sudo && \
+    adduser --disabled-password --gecos '' user && \
+    adduser user sudo && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers 
+USER user
+RUN sudo npm install -g --unsafe-perm composer-cli@0.20 && \
+    sudo npm install -g --unsafe-perm composer-rest-server@0.20 && \
+    sudo npm install -g --unsafe-perm generator-hyperledger-composer@0.20 && \
+    sudo npm install -g --unsafe-perm yo && \
+    sudo npm install -g --unsafe-perm yo
 # Set up Working directory
 WORKDIR /app
 COPY . /app
-RUN chmod u+x prereqs-ubuntu.sh
-RUN ./prereqs-ubuntu.sh
-## Set up development environment for Hyperledge-Composer
-# 1. CLI tools
-RUN npm install -g composer-cli@0.20
-RUN npm install -g composer-rest-server@0.20
-RUN npm install -g generator-hyperledger-composer@0.20
-RUN npm install -g yo
-# 2. Playground
-RUN npm install -g composer-playground@0.20
-# 3. Hyperledger Fabric
-RUN mkdir fabric-dev-servers && cd fabric-dev-servers
-RUN curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
-RUN tar -xvf fabric-dev-servers.tar.gz
-## Starting REST server
-RUN export FABRIC_VERSION=hlfv12
-RUN ./stopFabric.sh
-RUN ./teardownFabric.sh
-RUN ./downloadFabric.sh
-RUN ./startFabric.sh
-RUN rm -fr ../../.composer
-RUN mkdir certificates
-RUN cp fabric-scripts/hlfv12/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem ../certificates
-RUN cp fabric-scripts/hlfv12/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/114aab0e76bf0c78308f89efc4b8c9423e31568da0c340ca187a9b17aa9a4457_sk ../certificates/
-RUN cd ../certificates
-RUN composer card create -p connection.json -u PeerAdmin -c Admin@org1.example.com-cert.pem -k 114aab0e76bf0c78308f89efc4b8c9423e31568da0c340ca187a9b17aa9a4457_sk -r PeerAdmin -r ChannelAdmin
-RUN composer card import -f PeerAdmin@fabric-network.card
-RUN composer network install -c PeerAdmin@fabric-network -a /app/bforos@0.0.1.bna
-RUN composer network start --networkName bforos --networkVersion 0.0.1 -A admin -S adminpw -c PeerAdmin@fabric-network
-RUN composer card import -f admin@bforos.card
-RUN export COMPOSER_TLS=true
-RUN composer-rest-server -c admin@bforos -n never
-EXPOSE 3000
-EXPOSE 4200
-# Start frontend
-CMD ["npm" , "start"]
+#  Ensure that CA certificates are installed
+#RUN apt-get -y install apt-transport-https ca-certificates
+# Add Docker repository key to APT keychain
+#RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg |  apt-key add -
+

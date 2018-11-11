@@ -51,13 +51,28 @@ RUN apt-get install -y sudo && \
 USER user
 RUN sudo npm install -g --unsafe-perm composer-cli@0.20 && \
     sudo npm install -g --unsafe-perm composer-rest-server@0.20 && \
-    sudo npm install -g --unsafe-perm generator-hyperledger-composer@0.20 && \
-    sudo npm install -g --unsafe-perm yo && \
-    sudo npm install -g --unsafe-perm yo
+    sudo npm install -g --unsafe-perm generator-hyperledger-composer@0.20 
 # Set up Working directory
 WORKDIR /app
-COPY . /app
-#  Ensure that CA certificates are installed
+COPY ./fabric-dev-servers /app
+
+#EXPOSE 3000
+
+#RUN export FABRIC_VERSION=hlfv12 && \
+ #   ./stopFabric.sh && \
+#    ./teardownFabric.sh && \
+#    ./downloadFabric.sh && \
+#    ./startFabric.sh && \
+#    rm -fr ~/.composer && \
+ #   cd certificates && \
+ #   composer card create -p connection.json -u PeerAdmin -c Admin@org1.example.com-cert.pem -k 114aab0e76bf0c78308f89efc4b8c9423e31568da0c340ca187a9b17aa9a4457_sk -r PeerAdmin -r ChannelAdmin && \
+ #   composer card import -f PeerAdmin@fabric-network.card && \
+ #   composer network install -c PeerAdmin@fabric-network -a /app/bforos@0.0.1.bna && \
+  #  composer network start --networkName bforos --networkVersion 0.0.1 -A admin -S adminpw -c PeerAdmin@fabric-network && \
+#    composer card import -f admin@bforos.card && \
+ #   export COMPOSER_TLS=true && \
+ #   composer-rest-server -c admin@bforos -n never
+
 #RUN apt-get -y install apt-transport-https ca-certificates
 # Add Docker repository key to APT keychain
 #RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg |  apt-key add -

@@ -94,7 +94,9 @@ Once the installation is complete run,
 `````
 npm start
 `````
-and navigate to `https://localhost:4200/`. The app will automatically reload if you change any of the source files. 
+If your Internet Browser is opened it will automatically navigate to `https://localhost:4200/`. The app will automatically reload if you change any of the source files. 
+
+In the same way as before it is possible that your browser blocks the connection. In that case, follow the steps depicted in the section: 'Interacting with the business network using the REST server', to add a security exception.
 
 Once the app is loaded log-in with ORCID account, however since we are in the testing fase of the forntenbd application any user must be registered in the orcid sandbox. Create a user in the [sandbox](https://sandbox.orcid.org/). After the user is creatred you can access the frontend. 
 

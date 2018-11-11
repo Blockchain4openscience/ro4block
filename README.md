@@ -57,7 +57,23 @@ composer-rest-server -c admin@bforos -n never
 `````
 use `admin@bforos` as the card name.
 
-Launch your browser and go to the URL given http://localhost:3000/explorer for interacting with it. Rest server generates an endpoint for each participant, asset and transaction of the business network definition. Go to the business model to review all operations in the rest server. yo can use a api environment tool (e.g. Postman) to send Http Request to Hypeledger.
+Launch your browser and go to the URL given https://localhost:3000/explorer for interacting with it. Rest server generates an endpoint for each participant, asset and transaction of the business network definition. Go to the business model to review all operations in the rest server. yo can use a api environment tool (e.g. Postman) to send Http Request to Hypeledger.
+
+It is possible that your browser blocks the connection due to lack of a certificate for the https connection. If this is the case you have to add the exception to allow communication to the localhost at port 3000. Following it is shown how this is done in Mozilla Firefox.
+
+If your broewser blocks the connection a warning like the following will be shown in Firefox:
+
+![Security Warning](pictures/NotSecureConnection.png?raw=true "Not Secure")
+
+If you click 'Advanced' the options below will be shown:
+
+![Add Exception](pictures/AddException.png?raw=true "Add Exception")
+
+Then click Add Exception and the next pop up message will ask for confirmation:
+
+![Confirm](pictures/Confirm.png?raw=true "Confirm")
+
+Click Confirm and reload.
 
 ## Front-end based on Angular application
 

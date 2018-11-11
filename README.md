@@ -61,7 +61,7 @@ Launch your browser and go to the URL given https://localhost:3000/explorer for 
 
 It is possible that your browser blocks the connection due to lack of a certificate for the https connection. If this is the case you have to add the exception to allow communication to the localhost at port 3000. Following it is shown how this is done in Mozilla Firefox.
 
-If your broewser blocks the connection a warning like the following will be shown in Firefox:
+If your browser blocks the connection a warning like the following will be shown in Firefox:
 
 ![Security Warning](pictures/NotSecureConnection.png?raw=true "Not Secure")
 
@@ -73,7 +73,7 @@ Then click Add Exception and the next pop up message will ask for confirmation:
 
 ![Confirm](pictures/Confirm.png?raw=true "Confirm")
 
-Click Confirm and reload.
+Click 'Confirm Security Exception' and reload.
 
 ## Front-end based on Angular application
 

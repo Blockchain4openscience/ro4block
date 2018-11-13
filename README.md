@@ -73,7 +73,7 @@ Then click Add Exception and the next pop up message will ask for confirmation:
 
 ![Confirm](pictures/Confirm.png?raw=true "Confirm")
 
-Click 'Confirm Security Exception' and reload.
+Click 'Confirm Security Exception' and the browser will reload.
 
 ## Front-end based on Angular application
 
